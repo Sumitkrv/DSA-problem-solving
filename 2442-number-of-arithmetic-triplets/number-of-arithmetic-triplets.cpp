@@ -3,15 +3,12 @@ public:
     int arithmeticTriplets(vector<int>& nums, int diff) {
         int n=nums.size();
         int cnt=0;
-        for(int i=0; i<n; i++){
-            for(int j=i+1; j<n; j++){
-                for(int k=j+1; k<n; k++){
-                    if(nums[j]-nums[i]==diff && nums[k]-nums[j]==diff){
-                        cnt++;
-                    }
-                }
+        unordered_set<int> st(nums.begin(), nums.end());
+        for(int x: nums){
+            if(st.count(x+diff) && st.count(x+2*diff)){
+                cnt++;
             }
         }
-        return cnt;
+       return cnt;
     }
 };
