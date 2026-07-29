@@ -1,25 +1,20 @@
 class Solution {
 public:
     vector<int> findErrorNums(vector<int>& nums) {
-        int n=nums.size();
-        sort(nums.begin(), nums.end());
-        int totSum=(n*(n+1))/2;
-        int duplicate;
-        int sum=0;
-        vector<int> ans;
-        for(int i=1; i<n; i++){
-            if(nums[i]==nums[i-1]){
-                duplicate=nums[i];
-            }
-            sum+=nums[i];
+        long long n=nums.size();
+        long long sn=(n*(n+1))/2;
+        long long s2n=(n*(n+1)*(2*n+1))/6;
+        long long s=0;
+        long long s2=0;
+        for(int i=0; i<n; i++){
+            s+=nums[i];
+            s2+=(long long) nums[i]*(long long) nums[i];
         }
-        sum+=nums[0];
-        ans.push_back(duplicate);
-        int sumWoDup=sum-duplicate;
-        int missing=totSum-sumWoDup;
-        ans.push_back(missing);
-        return ans;
-        
-
+        long long val1=s-sn;
+        long long val2=s2-s2n;
+        val2=val2/val1;
+        long long x=(val1 +val2)/2;
+        long long y=x-val1;
+        return {(int)x, (int)y};
     }
 };
