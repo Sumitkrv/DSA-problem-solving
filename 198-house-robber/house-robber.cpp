@@ -15,16 +15,20 @@ public:
     }
     int rob(vector<int>& nums) {
         int n=nums.size();
-        vector<int> dp(n, 0);
-        dp[0]=nums[0];
+        //vector<int> dp(n, 0);
+        //dp[0]=nums[0];
+        int prev=nums[0];
+        int prev2=0;
         for(int ind=1; ind<n; ind++){
-            int nonPick=0+dp[ind-1];
+            int nonPick=0+prev;
             int pick=nums[ind];
             if(ind>1){
-                pick+=dp[ind-2];
+                pick+=prev2;
             }
-            dp[ind]= max(pick, nonPick);
+            int curr= max(pick, nonPick);
+            prev2=prev;
+            prev=curr;
         }
-        return dp[n-1];
+        return prev;
     }
 };
