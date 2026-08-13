@@ -17,19 +17,22 @@ public:
     }
     int maxProfit(int k, vector<int>& prices) {
         int n=prices.size();
-        vector<vector<int>> dp(n+1, vector<int>(2*k+1, 0));
+        //vector<vector<int>> dp(n+1, vector<int>(2*k+1, 0));
+        vector<int> next(2*k+1, 0);
+        vector<int> cur(2*k+1, 0);
         for(int ind=n-1; ind>=0; ind--){
             for(int transNo=2*k-1; transNo>=0; transNo--){
                 int profit=0;
                 if(transNo%2==0){
-                    profit=max(-prices[ind]+dp[ind+1][transNo+1], 0+dp[ind+1][transNo]);
+                    profit=max(-prices[ind]+next[transNo+1], 0+next[transNo]);
                 }
                 else{
-                    profit=max(prices[ind]+ dp[ind+1][transNo+1], 0+ dp[ind+1][transNo]);
+                    profit=max(prices[ind]+ next[transNo+1], 0+ next[transNo]);
                 }
-                dp[ind][transNo]= profit;
+                cur[transNo]= profit;
             }
+            next=cur;
         }
-        return dp[0][0];
+        return next[0];
     }
 };
