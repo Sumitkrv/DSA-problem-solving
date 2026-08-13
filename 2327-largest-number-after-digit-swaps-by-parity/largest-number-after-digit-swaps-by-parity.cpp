@@ -19,11 +19,11 @@ public:
         for(char ch: s){
             int x=ch-'0';
             if(x%2==0){
-                ans+=char(even.back()+'0');
+                ans+=to_string(even.back());
                 even.pop_back();
             }
             else{
-                ans+=char(odd.back()+'0');
+                ans+=to_string(odd.back());
                 odd.pop_back();
             }
         }
