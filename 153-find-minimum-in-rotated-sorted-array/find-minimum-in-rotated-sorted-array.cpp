@@ -6,6 +6,11 @@ public:
         int mini=INT_MAX;
         while(low<=high){
             int mid=(low+high)/2;
+            // if sorted array initially
+            if(nums[low]<=nums[high]){
+                mini=min(nums[low], mini);
+                break;
+            }
             //left sorted
             if(nums[mid]>=nums[low]){
                 mini=min(nums[low], mini);
