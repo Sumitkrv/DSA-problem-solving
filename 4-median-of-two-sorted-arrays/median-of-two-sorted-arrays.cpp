@@ -3,28 +3,39 @@ public:
     double findMedianSortedArrays(vector<int>& nums1, vector<int>& nums2) {
         int n=nums1.size();
         int m=nums2.size();
-        vector<int> nums3;
-        int i=0, j=0;
+        int h=(m+n);
+        int ind1=h/2-1;
+        int ind2=h/2;
+        int ind1el=-1;
+        int ind2el=-1;
+        int i=0, j=0, cnt=0;
         while(i<n && j<m){
             if(nums1[i]<nums2[j]){
-                nums3.push_back(nums1[i]);
-                i++;
+                if(cnt==ind1) ind1el=nums1[i];
+                if(cnt==ind2) ind2el=nums1[i];
+                cnt++, i++;
+
             }
             else{
-                nums3.push_back(nums2[j]);
-                j++;
+                if(cnt==ind1) ind1el=nums2[j];
+                if(cnt==ind2) ind2el=nums2[j];
+                cnt++, j++;
             }
         }
         while(i<n){
-            nums3.push_back(nums1[i++]);
+            if(cnt==ind1) ind1el=nums1[i];
+            if(cnt==ind2) ind2el=nums1[i];
+            i++, cnt++;
         }
         while(j<m){
-            nums3.push_back(nums2[j++]);
+            if(cnt==ind1) ind1el=nums2[j];
+            if(cnt==ind2) ind2el=nums2[j];
+            j++, cnt++;
         }
-        int h=m+n;
         if(h%2==1){
-            return nums3[h/2];
+            return ind2el;
         }
-        return (double)((double) (nums3[h/2])+ (double) (nums3[h/2-1]))/2.0;
+        return (double)((double)(ind1el+ind2el))/2.0;
+
     }
 };
