@@ -11,17 +11,16 @@
  */
 class Solution {
 public:
-    int dfsHeight(TreeNode* root){
+    int findHeight(TreeNode* root){
         if(root==NULL) return 0;
-        int left=dfsHeight(root->left);
-        if(left==-1) return -1;
-        int right=dfsHeight(root->right);
-        if(right==-1) return -1;
-        if(abs(right-left)>1) return -1;
-        return max(left, right)+1;
-        
+        int lh=findHeight(root->left);
+        if(lh==-1) return -1;
+        int rh=findHeight(root->right);
+        if(rh==-1) return -1;
+        if(abs(lh- rh)>1) return -1;
+        return 1+max(lh, rh);
     }
     bool isBalanced(TreeNode* root) {
-        return dfsHeight(root)!=-1;
+        return findHeight(root)!=-1;
     }
 };
