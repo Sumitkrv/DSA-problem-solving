@@ -12,9 +12,9 @@ public:
             int row=q.front().first;
             int col=q.front().second;
             q.pop();
-            for(int i=0; i<4; i++){
-                int nrow=row+delrow[i];
-                int ncol=col+delcol[i];
+            for(int k=0; k<4; k++){
+                int nrow=row+delrow[k];
+                int ncol=col+delcol[k];
                 if(nrow>=0 && nrow<n && ncol>=0 && ncol<m && grid[nrow][ncol]=='1' && !vis[nrow][ncol]){
                     vis[nrow][ncol]=1;
                     q.push({nrow, ncol});
