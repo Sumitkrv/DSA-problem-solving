@@ -1,14 +1,14 @@
 class Solution {
 public:
-    void f(vector<char>& s, vector<char> &charArr, int n, int i){
-        if(i==n) return;
-        f(s, charArr, n, i+1);
-        charArr.push_back(s[i]);
+    void f(vector<char>& s, int left, int right){
+        if(left>=right) return;
+        swap(s[left], s[right]);
+        f(s, left+1, right-1);
     }
     void reverseString(vector<char>& s) {
         int n=s.size();
-        vector<char> charArr;
-        f(s, charArr, n, 0);
-        s=charArr;
+        
+        f(s, 0, n-1);
+        
     }
 };
