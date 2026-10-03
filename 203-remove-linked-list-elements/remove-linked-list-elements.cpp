@@ -18,17 +18,14 @@ public:
         if(head==NULL) return NULL;
         ListNode* temp=head;
         while(temp->next){
-            
             if(temp->next->val==val){
                 temp->next=temp->next->next;
+
             }
             else{
                 temp=temp->next;
             }
-            
-
         }
         return head;
-        
     }
 };
