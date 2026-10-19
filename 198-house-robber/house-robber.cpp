@@ -15,20 +15,7 @@ public:
     }
     int rob(vector<int>& nums) {
         int n=nums.size();
-        //vector<int> dp(n, 0);
-        //dp[0]=nums[0];
-        int prev=nums[0];
-        int prev2=0;
-        for(int ind=1; ind<n; ind++){
-            int nonPick=0+prev;
-            int pick=nums[ind];
-            if(ind>1){
-                pick+=prev2;
-            }
-            int curr= max(pick, nonPick);
-            prev2=prev;
-            prev=curr;
-        }
-        return prev;
+        vector<int> dp(n, -1);
+        return f(n-1, nums, dp);
     }
 };
