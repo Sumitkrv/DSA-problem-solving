@@ -4,10 +4,11 @@ public:
         int n=nums.size();
         unordered_map<int, int> mp;
         for(int i=0; i<n; i++){
-            mp[nums[i]]++;
-            if(mp[nums[i]]>1){
+            int first=nums[i];
+            if(mp.find(first)!=mp.end()){
                 return true;
             }
+            mp[nums[i]]++;
         }
         return false;
     }
