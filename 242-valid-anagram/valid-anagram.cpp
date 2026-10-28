@@ -13,11 +13,11 @@ public:
                 return false;
             }
         }
-        for(int i=0; i<n; i++){
-            if(mp[s[i]]!=0){
-                return false;
-            }
-        }
+        // for(int i=0; i<n; i++){
+        //     if(mp[s[i]]!=0){
+        //         return false;
+        //     }
+        // }
         return true;
     }
 };
