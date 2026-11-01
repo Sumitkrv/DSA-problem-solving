@@ -5,20 +5,13 @@ public:
         int left=0, right=0;
         int len=INT_MAX;
         int sum=0;
-        while(right<n || sum>=target){
-            
-            if(sum<target){
-                sum+=nums[right];
-                right++;
-            }
-            else{
-                
-                while(sum>=target){
-                    len=min(len, right-left);
-                    sum-=nums[left];
-                    left++;
-                    
-                }
+        while(right<n){
+            sum+=nums[right];
+            right++;
+            while(sum>=target){
+                len=min(len, right-left);
+                sum-=nums[left];
+                left++;
             }
 
         }
