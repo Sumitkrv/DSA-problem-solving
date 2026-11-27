@@ -1,17 +1,24 @@
 class Solution {
 public:
-    int maxi(int ind, vector<int> &temp, vector<int> &dp){
-        if(ind==0) return temp[0];
-        if(ind<0) return 0;
-        if(dp[ind]!=-1) return dp[ind];
-        int take=temp[ind]+ maxi(ind-2, temp, dp);
-        int notTake=0+ maxi(ind-1, temp, dp);
-        return dp[ind]= max(take, notTake);
-    }
+    // int maxi(int ind, vector<int> &temp, vector<int> &dp){
+    //     if(ind==0) return temp[0];
+    //     if(ind<0) return 0;
+    //     if(dp[ind]!=-1) return dp[ind];
+    //     int take=temp[ind]+ maxi(ind-2, temp, dp);
+    //     int notTake=0+ maxi(ind-1, temp, dp);
+    //     return dp[ind]= max(take, notTake);
+    // }
     int f(vector<int> &temp){
         int n=temp.size();
-        vector<int> dp(n+1, -1);
-        return maxi(n-1, temp, dp);
+        vector<int> dp(n+1, 0);
+        dp[0]=temp[0];
+        for(int i=1; i<n; i++){
+            int take=temp[i];
+            if(i>1) take+=dp[i-2];
+            int notTake=0+dp[i-1];
+            dp[i]=max(take, notTake);
+        }
+        return dp[n-1];
     }
     int rob(vector<int>& nums) {
         int n=nums.size();
